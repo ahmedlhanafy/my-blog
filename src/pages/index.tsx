@@ -61,6 +61,29 @@ const IndexPage = ({
                   AhmedElhanafy
                 </Title>
                 <Button
+                  color="primary"
+                  // onClick={toggle}
+                >
+                  blog
+                </Button>
+                <Button color="violet">library</Button>
+                <Button color="pink">projects</Button>
+                <Button>
+                  worksAt
+                  <ButtonBracket theme={theme}>{'={'}</ButtonBracket>
+                  <MsLogo
+                    src="https://pngimg.com/uploads/microsoft/microsoft_PNG13.png"
+                    alt="Microsoft Logo"
+                  />
+                  <ButtonBracket theme={theme}>{'}'}</ButtonBracket>
+                </Button>
+
+                <Button>
+                  social
+                  <ButtonBracket theme={theme}>{'=['}</ButtonBracket>
+                  <ButtonBracket theme={theme}>{']'}</ButtonBracket>
+                </Button>
+                <Button
                   onMouseLeave={() => {
                     if (!ref.current || animating.current) return;
                     document
@@ -106,27 +129,11 @@ const IndexPage = ({
                       },
                     );
                   }}
-                  color="primary"
-                  // onClick={toggle}
                 >
-                  blog
-                </Button>
-                <Button color="violet">library</Button>
-                <Button color="pink">projects</Button>
-                <Button>
-                  worksAt
+                  theme
                   <ButtonBracket theme={theme}>{'={'}</ButtonBracket>
-                  <MsLogo
-                    src="https://pngimg.com/uploads/microsoft/microsoft_PNG13.png"
-                    alt="Microsoft Logo"
-                  />
+                  <span>{isDark ? '🌃' : '🌇'}</span>
                   <ButtonBracket theme={theme}>{'}'}</ButtonBracket>
-                </Button>
-
-                <Button>
-                  social
-                  <ButtonBracket theme={theme}>{'=['}</ButtonBracket>
-                  <ButtonBracket theme={theme}>{']'}</ButtonBracket>
                 </Button>
                 <HeaderBracket theme={theme}>{'/>'}</HeaderBracket>
               </Wrapper>
