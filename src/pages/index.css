@@ -1,0 +1,15 @@
+@keyframes circle-out-hesitate {
+  0% {
+    clip-path: circle(0%);
+  }
+  40% {
+    clip-path: circle(40%);
+  }
+  100% {
+    clip-path: circle(120%);
+  }
+}
+
+.hamada {
+  animation: 2.5s cubic-bezier(0.25, 1, 0.3, 1) circle-out-hesitate both;
+}

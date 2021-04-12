@@ -8,10 +8,15 @@ import React, { createContext, ReactNode, useContext } from 'react';
 type Props = {
   children?: ReactNode;
   title?: string;
+  defaultTheme: 'dark' | 'light';
 };
 
-const Layout = ({ children, title = 'This is the default title' }: Props) => {
-  const [isDark, setIsDark] = React.useState(true);
+const Layout = ({
+  children,
+  title = 'This is the default title',
+  defaultTheme,
+}: Props) => {
+  const [isDark, setIsDark] = React.useState(defaultTheme === 'dark');
 
   return (
     <ThemeContext.Provider
@@ -19,7 +24,10 @@ const Layout = ({ children, title = 'This is the default title' }: Props) => {
     >
       <ThemeContext.Consumer>
         {({ isDark }) => (
-          <Container className={isDark ? '' : lightTheme.toString()}>
+          <Container
+            id="container"
+            className={isDark ? '' : lightTheme.toString()}
+          >
             <Head>
               <title>{title}</title>
             </Head>
@@ -39,6 +47,12 @@ const Container = styled('div', {
   height: '100vh',
   overflow: 'hidden',
   display: 'flex',
+  transform: 'translateZ(0)',
+  willChange: 'clip-path',
+  backgroundClip: 'border-box',
+  // maskClip: 'border-box',
+  clipRule: 'nonzero',
+  WebkitMaskClip: 'border-box',
 });
 
 const Background = styled('div', {

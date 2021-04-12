@@ -1,5 +1,6 @@
-import { AppProps } from 'next/app';
+import './index.css';
 import { applyGlobalStyles } from '../stitches.config';
+import { AppProps } from 'next/app';
 
 applyGlobalStyles();
 

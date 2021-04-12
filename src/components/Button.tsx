@@ -13,32 +13,32 @@ export const Button = styled('a', {
   fontSize: '20px',
   color: '$btnColor',
   margin: '4px 0px 6px 36px',
-  transition: 'background 120ms ease-in-out',
-  '&:hover': {
-    background: '$btnHovered',
-  },
+  // transition: 'background 120ms ease-in-out',
+  // '&:hover': {
+  //   background: '$btnHovered',
+  // },
   variants: {
     color: {
       primary: {
         background: '$primaryBackground',
         color: '$primary',
-        '&:hover': {
-          background: '$primaryBackgroundHovered',
-        },
+        // '&:hover': {
+        //   background: '$primaryBackgroundHovered',
+        // },
       },
       violet: {
         background: color(violetColor).alpha(0.3).string(),
         color: violetColor,
-        '&:hover': {
-          background: color(violetColor).alpha(0.4).string(),
-        },
+        // '&:hover': {
+        //   background: color(violetColor).alpha(0.4).string(),
+        // },
       },
       pink: {
         background: color(pinkColor).alpha(0.3).string(),
         color: pinkColor,
-        '&:hover': {
-          background: color(pinkColor).alpha(0.4).string(),
-        },
+        // '&:hover': {
+        //   background: color(pinkColor).alpha(0.4).string(),
+        // },
       },
     },
   },
