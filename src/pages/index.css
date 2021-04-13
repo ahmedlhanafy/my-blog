@@ -1,15 +1,19 @@
-@keyframes circle-out-hesitate {
-  0% {
-    clip-path: circle(0%);
-  }
-  40% {
-    clip-path: circle(40%);
-  }
-  100% {
-    clip-path: circle(120%);
-  }
+@font-face {
+  font-family: 'iA Writer Mono S';
+  src: url('/fonts/iA Writer Mono S/iAWriterMonoS-Regular.ttf');
+  font-style: normal;
+  font-weight: 400;
+  font-display: block;
 }
 
-.hamada {
-  animation: 2.5s cubic-bezier(0.25, 1, 0.3, 1) circle-out-hesitate both;
+@font-face {
+  font-family: 'iA Writer Mono S';
+  src: url('/fonts/iA Writer Mono S/iAWriterMonoS-Bold.ttf');
+  font-style: 'bold';
+  font-weight: '500';
+  font-display: 'block';
+}
+
+* {
+  font-family: iA Writer Mono S, sans-serif;
 }

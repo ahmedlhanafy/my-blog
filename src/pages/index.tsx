@@ -1,153 +1,118 @@
 import { Button } from '../components/Button';
+import { GithubIcon, LinkedInIcon, TwitterIcon } from '../components/Icons';
 import Layout from '../components/Layout';
-import { ThemeContext } from '../hooks/useTheme';
-import { styled } from '../stitches.config';
-import { animate, easeInOut } from 'popmotion';
+import { ThemeContext, useTheme } from '../hooks/useTheme';
+import { useThemeCircularReveal } from '../hooks/useThemeCircularReveal';
+import { css, styled } from '../stitches.config';
+import Link from 'next/link';
 import React from 'react';
-import ReactDOM from 'react-dom';
 
-const IndexPage = ({
-  defaultTheme = 'dark',
-}: {
-  defaultTheme: 'dark' | 'light';
-}) => {
-  const ref = React.useRef<Element>(null);
-  const animating = React.useRef(false);
+const IndexPage = ({ isClone = false }: { isClone: boolean }) => {
+  const containerRef = React.useRef<HTMLDivElement>();
+  const buttonRef = React.useRef<HTMLAnchorElement>();
+  const { toggle, isDark } = useTheme();
+  const themeRef = React.useRef(isDark);
+  const bracketsTheme = isDark ? undefined : 'light';
 
-  React.useEffect(() => {
-    document.addEventListener('mousemove', (e) => {
-      if (ref.current) {
-        (ref.current as any).style.clipPath = `circle(7% at ${e.clientX}px ${e.clientY}px)`;
-      }
+  themeRef.current = isDark;
+
+  // This is okay because isClone shouldn't change in the browser.
+  if (!isClone) {
+    useThemeCircularReveal({
+      buttonRef,
+      containerRef,
+      reactElement: () => (
+        <ThemeContext.Provider
+          value={{ isDark: themeRef.current, toggle: () => {} }}
+        >
+          <IndexPage isClone />
+        </ThemeContext.Provider>
+      ),
+      config: {
+        startRadius: '7%',
+        endRadius: '150%',
+        toggleTheme: toggle,
+      },
     });
-    document.addEventListener('mouseup', (e) => {
-      if (ref.current) {
-        animating.current = true;
-        animate({
-          from: 70,
-          to: 1200,
-          duration: 500,
-          ease: easeInOut,
-          onUpdate: (val) => {
-            if (ref.current)
-              (ref.current as any).style.clipPath = `circle(${val}px at ${e.clientX}px ${e.clientY}px)`;
-          },
-          onComplete: () => {
-            const hamaza = ref.current;
-            ref.current = null;
-
-            if (hamaza) hamaza.style.clipPath = 'none';
-            document
-              .querySelector('#hamada')
-              .parentElement.removeChild(document.querySelector('#hamada'));
-            animating.current = false;
-          },
-        });
-        // ref.current.classList.add('hamada');
-      }
-    });
-  }, []);
+  }
   return (
-    <Layout defaultTheme={defaultTheme} title="Welcome to my blog">
-      <ThemeContext.Consumer>
-        {({ toggle, isDark }) => {
-          const theme = isDark ? undefined : 'light';
-          return (
-            <Container>
-              <style jsx>{``}</style>
-              <Wrapper>
-                <Title>
-                  <HeaderBracket theme={theme}>{'<'}</HeaderBracket>
-                  AhmedElhanafy
-                </Title>
-                <Button
-                  color="primary"
-                  // onClick={toggle}
-                >
-                  blog
-                </Button>
-                <Button color="violet">library</Button>
-                <Button color="pink">projects</Button>
-                <Button>
-                  worksAt
-                  <ButtonBracket theme={theme}>{'={'}</ButtonBracket>
-                  <MsLogo
-                    src="https://pngimg.com/uploads/microsoft/microsoft_PNG13.png"
-                    alt="Microsoft Logo"
-                  />
-                  <ButtonBracket theme={theme}>{'}'}</ButtonBracket>
-                </Button>
+    <Layout ref={containerRef} title="Hi, I'm Ahmed Elhanafy 👋">
+      <Container>
+        <Wrapper>
+          <Title>
+            <HeaderBracket theme={bracketsTheme}>{'<'}</HeaderBracket>
+            AhmedElhanafy
+          </Title>
+          <Link href="/coming-soon" passHref>
+            <Button color="primary">blog</Button>
+          </Link>
+          <Link href="/coming-soon" passHref>
+            <Button href="/coming-soon" color="violet">
+              library
+            </Button>
+          </Link>
+          <Link href="/coming-soon" passHref>
+            <Button href="/coming-soon" color="pink">
+              projects
+            </Button>
+          </Link>
+          <Button as="div">
+            worksAt
+            <ButtonBracket theme={bracketsTheme}>{'={'}</ButtonBracket>
+            <MsLogo
+              src={'https://pngimg.com/uploads/microsoft/microsoft_PNG13.png'}
+              alt="Microsoft Logo"
+            />
+            <ButtonBracket theme={bracketsTheme}>{'}'}</ButtonBracket>
+          </Button>
 
-                <Button>
-                  social
-                  <ButtonBracket theme={theme}>{'=['}</ButtonBracket>
-                  <ButtonBracket theme={theme}>{']'}</ButtonBracket>
-                </Button>
-                <Button
-                  onMouseLeave={() => {
-                    if (!ref.current || animating.current) return;
-                    document
-                      .querySelector('#hamada')
-                      .parentElement.removeChild(
-                        document.querySelector('#hamada'),
-                      );
-                    const hamaza = ref.current;
-                    ref.current = null;
-
-                    if (hamaza) hamaza.style.clipPath = 'none';
-                    toggle();
-                  }}
-                  onMouseEnter={(e) => {
-                    if (ref.current || animating.current) return;
-                    const containerEl = document.querySelector('#container');
-                    // const newContainer = containerEl?.cloneNode(
-                    //   true,
-                    // ) as Element;
-                    // newContainer?.classList.add(lightTheme.toString());
-                    // containerEl?.parentElement?.appendChild(newContainer);
-                    (containerEl as any).style.clipPath = `circle(7% at ${e.clientX}px ${e.clientY}px)`;
-                    const newElem = document.createElement('div');
-                    newElem.id = 'hamada';
-                    containerEl?.parentElement?.insertBefore(
-                      newElem,
-                      containerEl,
-                    );
-                    newElem.style.position = 'absolute';
-                    newElem.style.top = '0';
-                    newElem.style.left = '0';
-                    newElem.style.bottom = '0';
-                    newElem.style.right = '0';
-                    newElem.style.zIndex = '-1';
-                    newElem.style.pointerEvents = 'none';
-
-                    ReactDOM.render(
-                      <IndexPage defaultTheme={isDark ? 'dark' : 'light'} />,
-                      newElem,
-                      () => {
-                        toggle();
-                        ref.current = containerEl;
-                      },
-                    );
-                  }}
-                >
-                  theme
-                  <ButtonBracket theme={theme}>{'={'}</ButtonBracket>
-                  <span>{isDark ? '🌃' : '🌇'}</span>
-                  <ButtonBracket theme={theme}>{'}'}</ButtonBracket>
-                </Button>
-                <HeaderBracket theme={theme}>{'/>'}</HeaderBracket>
-              </Wrapper>
-            </Container>
-          );
-        }}
-      </ThemeContext.Consumer>
-      <svg width="0" height="0">
-        <defs>
-          <clipPath id="mask">
-            <path d="M 40 0 L 0 40, 60 100, 0 160, 40 200, 100 140, 160 200, 200 160, 140 100, 200 40, 160 0, 100 60" />
-          </clipPath>
-        </defs>
-      </svg>
+          <Button as="div">
+            social
+            <ButtonBracket theme={bracketsTheme}>{'=['}</ButtonBracket>
+            <IconAnchor
+              target="_blank"
+              href="https://github.com/ahmedlhanafy"
+              className={iconClassName()}
+            >
+              <GithubIcon
+                color={isDark ? 'rgba(255,255,255,0.85)' : 'rgba(0,0,0,0.85)'}
+                size={24}
+              />
+            </IconAnchor>
+            <ButtonBracket theme={bracketsTheme}>{','}</ButtonBracket>
+            <IconAnchor
+              href="https://twitter.com/ahmedlhanafy"
+              target="_blank"
+              className={`${iconClassName()} `}
+              style={{ marginBottom: -6 }}
+            >
+              <TwitterIcon
+                size={24}
+                color={isDark ? 'rgba(0,194,255,0.85)' : '#00C2FF'}
+              />
+            </IconAnchor>
+            <ButtonBracket theme={bracketsTheme}>{','}</ButtonBracket>
+            <IconAnchor
+              target="_blank"
+              className={iconClassName()}
+              href="https://www.linkedin.com/in/ahmedlhanafy/"
+            >
+              <LinkedInIcon
+                size={24}
+                color={isDark ? 'rgb(20, 129, 241)' : '#0c66c2'}
+              />
+            </IconAnchor>
+            <ButtonBracket theme={bracketsTheme}>{']'}</ButtonBracket>
+          </Button>
+          <Button ref={buttonRef}>
+            theme
+            <ButtonBracket theme={bracketsTheme}>{'={'}</ButtonBracket>
+            <span>{isDark ? '🌃' : '🌇'}</span>
+            <ButtonBracket theme={bracketsTheme}>{'}'}</ButtonBracket>
+          </Button>
+          <HeaderBracket theme={bracketsTheme}>{'/>'}</HeaderBracket>
+        </Wrapper>
+      </Container>
     </Layout>
   );
 };
@@ -204,6 +169,19 @@ const MsLogo = styled('img', {
   width: 20,
   height: 20,
   marginBottom: -3,
+});
+
+const iconClassName = css({
+  marginBottom: -4,
+  marginX: 2,
+});
+
+const middleIconClassName = css({
+  marginX: 4,
+});
+
+const IconAnchor = styled('a', {
+  height: 24,
 });
 
 export default IndexPage;

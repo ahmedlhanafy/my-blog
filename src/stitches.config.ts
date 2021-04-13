@@ -3,7 +3,7 @@ import color from 'color';
 
 const primaryColor = 'rgb(87, 164, 235)';
 
-export const { theme, styled, getCssString, global } = createCss({
+export const { theme, styled, getCssString, global, css } = createCss({
   theme: {
     colors: {
       textColor: '#fff',
@@ -35,6 +35,12 @@ export const { theme, styled, getCssString, global } = createCss({
       bottom: val,
     }),
     size: () => (val) => ({ width: val, height: val }),
+    marginX: (config) => (
+      value: keyof typeof config['theme']['colors'] | (string & {}),
+    ) => ({
+      marginLeft: value,
+      marginRight: value,
+    }),
   },
 });
 
@@ -49,12 +55,38 @@ export const lightTheme = theme({
   },
 });
 
-export const applyGlobalStyles = global({
+const globalStyles = global({
   body: {
     margin: 0,
     overflow: 'hidden',
   },
-  '*': {
-    fontFamily: 'iA Writer Mono S',
-  },
+  // '*': {
+  //   fontFamily: 'sans-serif',
+  // },
 });
+
+// const globalFontFace1 = global({
+//   '@font-face': {
+//     fontFamily: 'iA Writer Mono S',
+//     src: 'url("/fonts/iA Writer Mono S/iAWriterMonoS-Regular.ttf")',
+//     fontStyle: 'normal',
+//     fontWeight: '400',
+//     fontDisplay: 'block',
+//   },
+// });
+
+// const globalFontFace2 = global({
+//   '@font-face': {
+//     fontFamily: 'iA Writer Mono S',
+//     src: 'url("/fonts/iA Writer Mono S/iAWriterMonoS-Bold.ttf")',
+//     fontStyle: 'bold',
+//     fontWeight: '500',
+//     fontDisplay: 'block',
+//   },
+// });
+
+export const applyGlobalStyles = () => {
+  // globalFontFace1();
+  // globalFontFace2();
+  globalStyles();
+};
