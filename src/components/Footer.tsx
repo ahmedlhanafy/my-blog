@@ -9,28 +9,30 @@ export const Footer = () => {
   return (
     <Container>
       <Text theme={theme}>
-        Made with <Bracket theme={theme}>{'<'}</Bracket>
-        Love
-        <Bracket theme={theme}>{'/> '}</Bracket>
-        && <Bracket theme={theme}>{'<'}</Bracket>Coffee
-        <Bracket theme={theme}>{'/>'}</Bracket>
+        Made with{' '}
+        <SecondaryText>
+          <Bracket theme={theme}>{'<'}</Bracket>
+          Love
+          <Bracket theme={theme}>{'/> '}</Bracket>
+          && <Bracket theme={theme}>{'<'}</Bracket>Coffee
+          <Bracket theme={theme}>{'/>'}</Bracket>
+        </SecondaryText>
       </Text>
     </Container>
   );
 };
 
 const Container = styled('footer', {
-  position: 'absolute',
-  bottom: 16,
-  left: 0,
-  right: 0,
   display: 'flex',
   justifyContent: 'center',
+  padding: 16,
 });
 
 const Text = styled('span', {
   color: 'rgba(221, 221, 221, 0.67)',
   fontSize: 12,
+  fontFamily: '$secondary',
+
   variants: {
     theme: {
       light: {
@@ -38,6 +40,10 @@ const Text = styled('span', {
       },
     },
   },
+});
+
+const SecondaryText = styled('span', {
+  fontFamily: '$primary',
 });
 
 const Bracket = styled('span', {

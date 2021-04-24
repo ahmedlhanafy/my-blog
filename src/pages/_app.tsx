@@ -1,5 +1,5 @@
 import './index.css';
-import { ThemeContext } from '../hooks/useTheme';
+import { CustomProvider } from '../components/CustomProvider';
 import { applyGlobalStyles } from '../stitches.config';
 import { AppProps } from 'next/app';
 import React from 'react';
@@ -8,12 +8,11 @@ applyGlobalStyles();
 
 function MyApp({ Component, pageProps }: AppProps) {
   const [isDark, setIsDark] = React.useState(true);
+
   return (
-    <ThemeContext.Provider
-      value={{ isDark, toggle: () => setIsDark((state) => !state) }}
-    >
+    <CustomProvider isDark={isDark} toggle={() => setIsDark((state) => !state)}>
       <Component {...pageProps} />
-    </ThemeContext.Provider>
+    </CustomProvider>
   );
 }
 

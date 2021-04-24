@@ -1,18 +1,22 @@
+import { components } from '../components/mdxComponents';
 import fs from 'fs';
 import matter from 'gray-matter';
+import renderToString from 'next-mdx-remote/render-to-string';
 import { MdxRemote } from 'next-mdx-remote/types';
 import path from 'path';
-import renderToString from 'next-mdx-remote/render-to-string';
-import { components } from '../components/mdxComponents';
+import readingTime from 'reading-time';
 
 export type BlogPost = {
   title: string;
   tags: string[];
   createdAt: string;
+  readableCreatedAt: string;
   content: MdxRemote.Source;
   type: 'book' | 'blog';
   slug: string;
   excerpt: string;
+  readTime: string;
+  cover?: { src: string; alt: string };
 };
 
 type MatterBlogPost = {
@@ -21,6 +25,8 @@ type MatterBlogPost = {
     type: 'blog' | 'book';
     tags: string;
     createdAt: string;
+    coverImg?: string;
+    coverAlt?: string;
   };
   excerpt: string;
   content: string;
@@ -34,7 +40,7 @@ const fromMatterToBlogPost = async (
 ): Promise<BlogPost> => {
   const {
     content,
-    data: { title, createdAt, tags, type },
+    data: { title, createdAt, tags, type, coverImg, coverAlt },
     excerpt,
   } = matterBlog;
 
@@ -42,14 +48,25 @@ const fromMatterToBlogPost = async (
     components,
   });
 
+  const stats = readingTime(mdxContent.renderedOutput);
+
+  const readableCreatedAt = new Date(createdAt).toLocaleDateString('en-US', {
+    month: 'short',
+    day: 'numeric',
+    year: 'numeric',
+  });
+
   return {
     title,
     type,
     content: mdxContent,
     createdAt,
+    readableCreatedAt,
     slug,
     excerpt,
     tags: tags.split(','),
+    readTime: stats.text,
+    cover: coverImg && coverAlt ? { src: coverImg, alt: coverAlt } : null,
   };
 };
 
@@ -72,6 +89,7 @@ export async function getAll(): Promise<BlogPost[]> {
   const fileContentsWithMetadata = filesContents.map<MatterBlogPost>(
     (content) => matter(content, { excerpt: true }) as any,
   );
+  console.log(fileContentsWithMetadata);
 
   for (let index = 0; index < fileContentsWithMetadata.length; index++) {
     const content = fileContentsWithMetadata[index];
@@ -89,7 +107,9 @@ export async function getBySlug(slug: string): Promise<BlogPost> {
     },
   );
 
-  const fileContentWithMetadata: MatterBlogPost = matter(content) as any;
+  const fileContentWithMetadata: MatterBlogPost = matter(content, {
+    excerpt: true,
+  }) as any;
 
   return fromMatterToBlogPost(fileContentWithMetadata, slug);
 }

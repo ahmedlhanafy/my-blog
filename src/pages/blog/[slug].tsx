@@ -1,9 +1,8 @@
-import { GetStaticPaths, GetStaticProps } from 'next';
-import hydrate from 'next-mdx-remote/hydrate';
-
 import Layout from '../../components/Layout';
 import { components } from '../../components/mdxComponents';
 import { BlogPost, getAllBlogSlugs, getBySlug } from '../../repos/blogs';
+import { GetStaticPaths, GetStaticProps } from 'next';
+import hydrate from 'next-mdx-remote/hydrate';
 
 export type BlogProps = { blog: BlogPost };
 
@@ -36,7 +35,7 @@ export const getStaticProps: GetStaticProps<
 
 export const getStaticPaths: GetStaticPaths = async () => {
   return {
-    paths: getAllBlogSlugs().map((slug) => `/blogs/${slug}`),
+    paths: getAllBlogSlugs().map((slug) => `/blog/${slug}`),
     fallback: false,
   };
 };

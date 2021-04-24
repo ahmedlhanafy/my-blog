@@ -34,10 +34,10 @@ export const useThemeCircularReveal = ({
       const newElem = document.createElement('div');
       sharedParent?.insertBefore(newElem, root);
       newElem.style.position = 'absolute';
-      newElem.style.top = '0';
-      newElem.style.left = '0';
-      newElem.style.bottom = '0';
-      newElem.style.right = '0';
+      newElem.style.top = '0px';
+      newElem.style.left = '0px';
+      newElem.style.bottom = '0px';
+      newElem.style.right = '0px';
       newElem.style.zIndex = '-1';
 
       ReactDOM.render(reactElement(), newElem, () => {
@@ -74,7 +74,7 @@ export const useThemeCircularReveal = ({
       animate({
         from: startRadius,
         to: endRadius,
-        type: 'spring',
+        duration: 1000,
         onPlay: () => {
           animating = true;
         },

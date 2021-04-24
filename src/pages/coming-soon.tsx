@@ -8,7 +8,7 @@ const ComingSoon = () => {
   const bracketsTheme = isDark ? undefined : 'light';
 
   return (
-    <Layout title="Coming Soon!">
+    <Layout title="Coming Soon!" addHeader={{ rootElement: <ComingSoon /> }}>
       <Container>
         <Wrapper>
           <Title>
@@ -27,10 +27,7 @@ const Container = styled('div', {
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
-  flexDirection: 'column',
   textAlign: 'start',
-  margin: '0 auto',
-  transition: 'clip-path 100ms ease-in',
 });
 
 const Wrapper = styled('div', {

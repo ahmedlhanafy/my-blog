@@ -7,6 +7,7 @@ export const { theme, styled, getCssString, global, css } = createCss({
   theme: {
     colors: {
       textColor: '#fff',
+      secondaryTextColor: 'rgba(255, 255, 255, 0.5)',
       background: '#141414',
       btnColor: '#e6e6e6',
       btnBackground: 'rgba(167, 167, 167, 0.2)',
@@ -24,6 +25,10 @@ export const { theme, styled, getCssString, global, css } = createCss({
       primary: primaryColor,
       primaryBackground: color(primaryColor).alpha(0.3).string(),
       primaryBackgroundHovered: color(primaryColor).alpha(0.4).string(),
+    },
+    fonts: {
+      primary: 'iA Writer Mono S',
+      secondary: 'GT Walsheim Pro',
     },
   },
   utils: {
@@ -52,6 +57,7 @@ export const { theme, styled, getCssString, global, css } = createCss({
 export const lightTheme = theme({
   colors: {
     textColor: '#000',
+    secondaryTextColor: 'rgba(0, 0, 0, 0.4)',
     background: '#fff',
     backgroundShapes: `radial-gradient(circle at 15% 50%, rgb(241, 238, 254), rgba(255, 255, 255, 0) 25%), radial-gradient(circle at 85% 30%, rgb(225, 248, 250), rgba(255, 255, 255, 0) 25%)`,
     btnColor: '#0F0F0F',
@@ -60,38 +66,9 @@ export const lightTheme = theme({
   },
 });
 
-const globalStyles = global({
+export const applyGlobalStyles = global({
   body: {
     margin: 0,
     overflow: 'hidden',
   },
-  // '*': {
-  //   fontFamily: 'sans-serif',
-  // },
 });
-
-// const globalFontFace1 = global({
-//   '@font-face': {
-//     fontFamily: 'iA Writer Mono S',
-//     src: 'url("/fonts/iA Writer Mono S/iAWriterMonoS-Regular.ttf")',
-//     fontStyle: 'normal',
-//     fontWeight: '400',
-//     fontDisplay: 'block',
-//   },
-// });
-
-// const globalFontFace2 = global({
-//   '@font-face': {
-//     fontFamily: 'iA Writer Mono S',
-//     src: 'url("/fonts/iA Writer Mono S/iAWriterMonoS-Bold.ttf")',
-//     fontStyle: 'bold',
-//     fontWeight: '500',
-//     fontDisplay: 'block',
-//   },
-// });
-
-export const applyGlobalStyles = () => {
-  // globalFontFace1();
-  // globalFontFace2();
-  globalStyles();
-};

@@ -1,18 +1,23 @@
 import { Button } from '../components/Button';
+import { CustomProvider, useRouter } from '../components/CustomProvider';
 import { GithubIcon, LinkedInIcon, TwitterIcon } from '../components/Icons';
 import Layout from '../components/Layout';
-import { ThemeContext, useTheme } from '../hooks/useTheme';
+import { useTheme } from '../hooks/useTheme';
 import { useThemeCircularReveal } from '../hooks/useThemeCircularReveal';
 import { css, styled } from '../stitches.config';
 import Link from 'next/link';
 import React from 'react';
 
-const IndexPage = ({ isClone = false }: { isClone: boolean }) => {
+type Props = { isClone: boolean };
+
+const IndexPage = (props: Props) => {
+  const { isClone = false } = props;
   const containerRef = React.useRef<HTMLDivElement>();
   const buttonRef = React.useRef<HTMLAnchorElement>();
   const { toggle, isDark } = useTheme();
   const themeRef = React.useRef(isDark);
   const bracketsTheme = isDark ? undefined : 'light';
+  const router = useRouter();
 
   themeRef.current = isDark;
 
@@ -22,11 +27,13 @@ const IndexPage = ({ isClone = false }: { isClone: boolean }) => {
       buttonRef,
       containerRef,
       reactElement: () => (
-        <ThemeContext.Provider
-          value={{ isDark: themeRef.current, toggle: () => {} }}
+        <CustomProvider
+          isDark={themeRef.current}
+          toggle={() => {}}
+          router={router}
         >
           <IndexPage isClone />
-        </ThemeContext.Provider>
+        </CustomProvider>
       ),
       config: {
         startRadius: '7%',
@@ -36,25 +43,25 @@ const IndexPage = ({ isClone = false }: { isClone: boolean }) => {
     });
   }
   return (
-    <Layout ref={containerRef} title="Hi, I'm Ahmed Elhanafy 👋">
+    <Layout
+      ref={containerRef}
+      addBackgroundIcons
+      title="Hi, I'm Ahmed Elhanafy 👋"
+    >
       <Container>
         <Wrapper>
           <Title>
             <HeaderBracket theme={bracketsTheme}>{'<'}</HeaderBracket>
             AhmedElhanafy
           </Title>
-          <Link href="/coming-soon" passHref>
+          <Link href="/blog" passHref>
             <Button color="primary">blog</Button>
           </Link>
-          <Link href="/coming-soon" passHref>
-            <Button href="/coming-soon" color="violet">
-              library
-            </Button>
+          <Link href="/library" passHref>
+            <Button color="violet">library</Button>
           </Link>
-          <Link href="/coming-soon" passHref>
-            <Button href="/coming-soon" color="pink">
-              projects
-            </Button>
+          <Link href="/projects" passHref>
+            <Button color="pink">projects</Button>
           </Link>
           <Button as="div">
             worksAt
@@ -127,6 +134,7 @@ const Container = styled('div', {
   margin: '0 auto',
   transition: 'clip-path 100ms ease-in',
   padding: 16,
+  fontFamily: '$primary',
 });
 
 const Wrapper = styled('div', {

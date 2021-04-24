@@ -14,6 +14,21 @@
   font-display: swap;
 }
 
+@font-face {
+  font-family: GT Walsheim Pro;
+  src: url('/fonts/GTWalsheimPro/GTWalsheimProRegular.ttf');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: GT Walsheim Pro;
+  src: url('/fonts/GTWalsheimPro/GTWalsheimProBold.ttf');
+  font-weight: 700;
+  font-style: normal;
+}
+
 * {
-  font-family: iA Writer Mono S, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
 }
