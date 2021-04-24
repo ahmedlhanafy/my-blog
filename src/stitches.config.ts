@@ -25,6 +25,7 @@ export const { theme, styled, getCssString, global, css } = createCss({
       primary: primaryColor,
       primaryBackground: color(primaryColor).alpha(0.3).string(),
       primaryBackgroundHovered: color(primaryColor).alpha(0.4).string(),
+      primaryLink: color(primaryColor).darken(0.2).string(),
     },
     fonts: {
       primary: 'iA Writer Mono S',
