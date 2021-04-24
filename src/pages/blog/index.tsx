@@ -45,16 +45,16 @@ const BlogsContainer = styled('div', {
 });
 
 const Separator = styled('div', {
-  // backgroundColor: 'rgba(255, 255, 255, 0.09)',
+  // backgroundColor: 'rgba(255, 255, 255, 0.06)',
   height: 1,
   marginTop: 15,
   marginBottom: 15,
-  width: '100%',
+  width: '20%',
   alignSelf: 'center',
   variants: {
     theme: {
       light: {
-        // backgroundColor: 'rgba(0, 0, 0, 0.05)',
+        backgroundColor: 'rgba(0, 0, 0, 0.05)',
       },
     },
   },

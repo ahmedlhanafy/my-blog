@@ -24,13 +24,13 @@ export const BlogRow = (props: Props) => {
       <Metadata>
         {blog.readableCreatedAt} • {blog.readTime}
       </Metadata>
-      <TagsContainer style={{ marginBottom: blog.excerpt ? 10 : 0 }}>
+      {/* <TagsContainer style={{ marginBottom: blog.excerpt ? 10 : 0 }}>
         {blog.tags.map((tag) => (
           <TagButton theme={isDark ? undefined : 'light'} key={tag}>
             {tag}
           </TagButton>
         ))}
-      </TagsContainer>
+      </TagsContainer> */}
       <Excerpt>{blog.excerpt.trim()}</Excerpt>
     </Container>
   );
