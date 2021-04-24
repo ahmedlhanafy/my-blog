@@ -89,7 +89,6 @@ export async function getAll(): Promise<BlogPost[]> {
   const fileContentsWithMetadata = filesContents.map<MatterBlogPost>(
     (content) => matter(content, { excerpt: true }) as any,
   );
-  console.log(fileContentsWithMetadata);
 
   for (let index = 0; index < fileContentsWithMetadata.length; index++) {
     const content = fileContentsWithMetadata[index];
