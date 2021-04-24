@@ -26,7 +26,9 @@ export const BlogRow = (props: Props) => {
       </Metadata>
       <TagsContainer style={{ marginBottom: blog.excerpt ? 10 : 0 }}>
         {blog.tags.map((tag) => (
-          <TagButton key={tag}>{tag}</TagButton>
+          <TagButton theme={isDark ? undefined : 'light'} key={tag}>
+            {tag}
+          </TagButton>
         ))}
       </TagsContainer>
       <Excerpt>{blog.excerpt.trim()}</Excerpt>
@@ -76,6 +78,14 @@ const TagButton = styled(Button, {
   fontSize: 12,
   marginX: 0,
   marginRight: 8,
+  background: 'rgba(255,255,255,0.1)',
+  variants: {
+    theme: {
+      light: {
+        background: 'rgba(0,0,0,0.1)',
+      },
+    },
+  },
 });
 
 const Excerpt = styled('p', {
