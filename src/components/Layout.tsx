@@ -62,6 +62,7 @@ const Container = styled('div', {
   overflowY: 'auto',
   display: 'flex',
   flexDirection: 'column',
+  overflowX: 'hidden',
 });
 
 const ContentContainer = styled('div', {

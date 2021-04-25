@@ -13,18 +13,6 @@ export default class Document extends NextDocument {
             id="stitches"
             dangerouslySetInnerHTML={{ __html: getCssString() }}
           />
-          <link
-            rel="preload"
-            href="/fonts/iA Writer Mono S/iAWriterMonoS-Bold.ttf"
-            as="font"
-            crossOrigin=""
-          />
-          <link
-            rel="preload"
-            href="/fonts/iA Writer Mono S/iAWriterMonoS-Regular.ttf"
-            as="font"
-            crossOrigin=""
-          />
 
           <link rel="icon" href="/favicon.svg" crossOrigin="" />
         </Head>

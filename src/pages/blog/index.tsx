@@ -40,8 +40,13 @@ const BlogsContainer = styled('div', {
   width: 560,
   marginX: 'auto',
   flex: 1,
-  paddingTop: 40,
+  padding: '40px 0px',
   fontFamily: '$secondary',
+  boxSizing: 'border-box',
+  '@bp1': {
+    width: '100%',
+    padding: '40px 24px',
+  },
 });
 
 const Separator = styled('div', {

@@ -9,6 +9,28 @@ createdAt: 02-1-2021
 
 _UPD: It’s been more than a month since I wrote the original draft for this article. I’ve since published three other blog posts here and more than twenty in [my telegam channel](https://t.me/nikitonsky_pub). The setup has proven itself fantastic, I am LOVING it and have zero urge looking anywhere else._
 
+```ts
+const stuff: Object = {
+  caret_extra_width: 2,
+  draw_centered: true,
+  draw_indent_guides: false,
+  draw_white_space: ['none'],
+  font_face: 'Writer',
+  font_size: 16,
+  gutter: false,
+  highlight_line: false,
+  line_padding_bottom: 3,
+  line_padding_top: 3,
+  margin: 10,
+  scroll_context_lines: 2,
+  scroll_past_end: 0.5,
+  word_wrap: true,
+  wrap_width: 72,
+  color_scheme: 'Packages/sublime-scheme-writer/Writer.sublime-color-scheme',
+  theme: 'Adaptive.sublime-theme',
+};
+```
+
 I’ve been a long-time fan of [iA Writer](https://ia.net/writer) for, well, writing. I bought the original iPad version, the original macOS version (when it was still called MacOS X), the Android one, and even the one they re-released as a “paid full-price update”. For me, it has found the perfect balance between features and simplicity, design and focus.
 
 Here’s a screenshot of the original version of iA Writer [from 2011](https://tonsky.livejournal.com/231968.html):
@@ -98,7 +120,27 @@ Also, Profile Switcher seems like something that can be useful beyond just writi
 4. Create a `Writing` profile via the `Profiles: Create profile` command.
 5. Put these settings in (just replace everything you currently have):
 
-   `{ "caret_extra_width": 2, "draw_centered": true, "draw_indent_guides": false, "draw_white_space": ["none"], "font_face": "Writer", "font_size": 16, "gutter": false, "highlight_line": false, "line_padding_bottom": 3, "line_padding_top": 3, "margin": 10, "scroll_context_lines": 2, "scroll_past_end": 0.5, "word_wrap": true, "wrap_width": 72, "color_scheme": "Packages/sublime-scheme-writer/Writer.sublime-color-scheme", "theme": "Adaptive.sublime-theme", }`
+```js
+{
+  "caret_extra_width": 2,
+  "draw_centered": true,
+  "draw_indent_guides": false,
+  "draw_white_space": ["none"],
+  "font_face": "Writer",
+  "font_size": 16,
+  "gutter": false,
+  "highlight_line": false,
+  "line_padding_bottom": 3,
+  "line_padding_top": 3,
+  "margin": 10,
+  "scroll_context_lines": 2,
+  "scroll_past_end": 0.5,
+  "word_wrap": true,
+  "wrap_width": 72,
+  "color_scheme": "Packages/sublime-scheme-writer/Writer.sublime-color-scheme",
+  "theme": "Adaptive.sublime-theme"
+}
+```
 
 You should see something like that:
 
