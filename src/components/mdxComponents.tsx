@@ -171,7 +171,9 @@ export const components = {
   img: (props) => <img {...props} style={{ maxWidth: '100%' }} />,
   a: (props) => <StyledLink {...props} />,
   h1: (props) => <h1 {...props} className={headerClassName()} />,
-  h2: (props) => <h2 {...props} className={headerClassName()} />,
+  h2: (props) => (
+    <h2 {...props} className={`${headerClassName()} ${header2ClassName()}`} />
+  ),
   h3: (props) => <h3 {...props} className={headerClassName()} />,
   h4: (props) => <h4 {...props} className={headerClassName()} />,
 };
@@ -229,6 +231,9 @@ const Pre = styled('pre', {
 
 const headerClassName = css({
   fontFamily: '$secondary',
+});
+const header2ClassName = css({
+  color: '$primary',
 });
 
 const StyledLink = styled('a', {

@@ -43,8 +43,9 @@ export const useThemeCircularReveal = ({
       ReactDOM.render(reactElement(), newElem, () => {
         toggleTheme();
         coordinates = { x, y };
-        containerElement.style.clipPath = `circle(${startRadius} at ${x}px ${y}px)`;
         clonedElement = newElem;
+        containerElement.style.clipPath = `circle(${startRadius} at ${x}px ${y}px)`;
+        newElem.children[0].scroll({ top: root.children[0].scrollTop });
       });
     };
 
