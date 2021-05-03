@@ -47,6 +47,24 @@ export const { theme, styled, getCssString, global, css } = createCss({
       marginLeft: value,
       marginRight: value,
     }),
+    paddingX: (config) => (
+      value: keyof typeof config['theme']['colors'] | (string & {}),
+    ) => ({
+      paddingLeft: value,
+      paddingRight: value,
+    }),
+    marginY: (config) => (
+      value: keyof typeof config['theme']['colors'] | (string & {}),
+    ) => ({
+      marginTop: value,
+      marginBottom: value,
+    }),
+    paddingY: (config) => (
+      value: keyof typeof config['theme']['colors'] | (string & {}),
+    ) => ({
+      paddingTop: value,
+      paddingBottom: value,
+    }),
   },
   media: {
     bp1: '(max-width: 640px)',
@@ -72,4 +90,19 @@ export const applyGlobalStyles = global({
     margin: 0,
     overflow: 'hidden',
   },
+  '@font-face': {
+    fontFamily: 'GT Walsheim Pro',
+    src: `url('../public/fonts/GTWalsheimPro/GTWalsheimProRegular.ttf')`,
+    fontWeight: 400,
+    fontStyle: 'normal',
+  },
 });
+
+global({
+  '@font-face': {
+    fontFamily: 'GT Walsheim Pro',
+    src: `url('fonts/GTWalsheimPro/GTWalsheimProBold.ttf')`,
+    fontWeight: 700,
+    fontStyle: 'normal',
+  },
+})();

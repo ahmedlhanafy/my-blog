@@ -14,6 +14,7 @@ export const Button = styled('a', {
   padding: '6px 16px',
   fontWeight: 'bold',
   fontSize: 20,
+  height: 36,
   color: '$btnColor',
   margin: '4px 0px 6px 36px',
   transition: 'background 120ms ease-in-out',
