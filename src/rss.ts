@@ -43,6 +43,7 @@ const generateRSS = async () => {
       author: [author],
       contributor: [author],
       date: new Date(blog.createdAt),
+      // TODO: Add social images
       image: `${baseUrl}/image.png`,
     });
   });
