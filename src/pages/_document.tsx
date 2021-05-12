@@ -1,3 +1,4 @@
+import '../rss';
 import { getCssString } from '../stitches.config';
 import NextDocument, { Head, Html, Main, NextScript } from 'next/document';
 import React from 'react';
