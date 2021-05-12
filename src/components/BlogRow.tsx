@@ -1,7 +1,6 @@
 import { useTheme } from '../hooks/useTheme';
 import { BlogPost } from '../repos/blogs';
 import { styled } from '../stitches.config';
-import { Button } from './Button';
 import Link from 'next/link';
 
 type Props = { blog: BlogPost };
@@ -69,24 +68,24 @@ const Metadata = styled('span', {
   marginBottom: 10,
 });
 
-const TagsContainer = styled('div', {
-  display: 'flex',
-  fontFamily: '$primary',
-});
+// const TagsContainer = styled('div', {
+//   display: 'flex',
+//   fontFamily: '$primary',
+// });
 
-const TagButton = styled(Button, {
-  fontSize: 12,
-  marginX: 0,
-  marginRight: 8,
-  background: 'rgba(255,255,255,0.1)',
-  variants: {
-    theme: {
-      light: {
-        background: 'rgba(0,0,0,0.1)',
-      },
-    },
-  },
-});
+// const TagButton = styled(Button, {
+//   fontSize: 12,
+//   marginX: 0,
+//   marginRight: 8,
+//   background: 'rgba(255,255,255,0.1)',
+//   variants: {
+//     theme: {
+//       light: {
+//         background: 'rgba(0,0,0,0.1)',
+//       },
+//     },
+//   },
+// });
 
 const Excerpt = styled('p', {
   fontSize: 12,

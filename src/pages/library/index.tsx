@@ -2,7 +2,7 @@ import Layout from '../../components/Layout';
 
 type Props = {};
 
-const IndexPage = (props: Props) => {
+const IndexPage = (_: Props) => {
   return (
     <Layout
       title="Welcome to my library!"

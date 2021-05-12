@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://www.ahmedelhanafy.com</id>
     <title>Ahmed Elhanafy's Blog</title>
-    <updated>2021-05-12T01:34:50.280Z</updated>
+    <updated>2021-05-12T01:50:44.170Z</updated>
     <generator>Next.js using Feed for Node.js</generator>
     <author>
         <name>Ahmed Elhanafy</name>
@@ -11,7 +11,7 @@
     <link rel="alternate" href="https://www.ahmedelhanafy.com"/>
     <link rel="self" href="https://www.ahmedelhanafy.com/rss/atom.xml"/>
     <subtitle>Welcome to my blog!</subtitle>
-    <logo>https://www.ahmedelhanafy.com/images/logo.svg</logo>
+    <logo>https://www.ahmedelhanafy.com/image.png</logo>
     <icon>https://www.ahmedelhanafy.com/favicon.ico</icon>
     <rights>All rights reserved 2021, Ahmed Elhanafy</rights>
     <entry>
