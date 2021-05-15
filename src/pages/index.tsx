@@ -5,6 +5,8 @@ import Layout from '../components/Layout';
 import { useTheme } from '../hooks/useTheme';
 import { useThemeCircularReveal } from '../hooks/useThemeCircularReveal';
 import { css, styled } from '../stitches.config';
+import { generateSocialCards } from '../react-socialcards/generate-socialcards';
+import { generateRSS } from '../rss';
 import Link from 'next/link';
 import React from 'react';
 
@@ -123,6 +125,17 @@ const IndexPage = (props: Props) => {
     </Layout>
   );
 };
+
+export async function getStaticProps() {
+  if (process.env.NODE_ENV === 'production') {
+    await generateRSS();
+    await generateSocialCards();
+  }
+
+  return {
+    props: {},
+  };
+}
 
 const Container = styled('div', {
   flex: 1,
