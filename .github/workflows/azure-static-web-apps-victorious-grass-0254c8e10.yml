@@ -3,11 +3,11 @@ name: Azure Static Web Apps CI/CD
 on:
   push:
     branches:
-      - blog
+      - master
   pull_request:
     types: [opened, synchronize, reopened, closed]
     branches:
-      - blog
+      - master
 
 env:
   NEXT_PUBLIC_GA_TRACKING_CODE: ${{ secrets.GA_TRACKING_CODE }}
