@@ -1,11 +1,11 @@
+import { Button } from '../../components/Button';
 import Layout from '../../components/Layout';
 import { components } from '../../components/mdxComponents';
+import { useTheme } from '../../hooks/useTheme';
 import { BlogPost, getAllBlogSlugs, getBySlug } from '../../repos/blogs';
+import { styled } from '../../stitches.config';
 import { GetStaticPaths, GetStaticProps } from 'next';
 import hydrate from 'next-mdx-remote/hydrate';
-import { styled } from '../../stitches.config';
-import { Button } from '../../components/Button';
-import { useTheme } from '../../hooks/useTheme';
 
 export type BlogProps = { blog: BlogPost };
 
@@ -21,13 +21,16 @@ const Blog = (props: BlogProps) => {
       addHeader={{
         rootElement: <Blog {...props} />,
       }}
+      description={blog.description}
+      img={blog.seo.image}
+      url={blog.seo.url}
     >
       <ContentContainer>
         <Title>{blog.title}</Title>
         <Metadata>
           {blog.readableCreatedAt} • {blog.readTime}
         </Metadata>
-        <TagsContainer style={{ marginBottom: blog.excerpt ? 10 : 0 }}>
+        <TagsContainer style={{ marginBottom: blog.description ? 10 : 0 }}>
           {blog.tags.map((tag) => (
             <TagButton theme={isDark ? undefined : 'light'} key={tag}>
               {tag}
@@ -79,6 +82,7 @@ const TagButton = styled(Button, {
   marginX: 0,
   marginRight: 8,
   background: 'rgba(255,255,255,0.1)',
+  height: 'auto',
   variants: {
     theme: {
       light: {
@@ -109,19 +113,17 @@ const BlogContent = styled('div', {
   color: '$textColor',
 });
 
-export const getStaticProps: GetStaticProps<
-  BlogProps,
-  { slug: string }
-> = async function (context) {
-  const slug = context.params?.slug;
-  if (!slug) {
-    throw new Error(`Slug shouldn't be null!`);
-  }
+export const getStaticProps: GetStaticProps<BlogProps, { slug: string }> =
+  async function (context) {
+    const slug = context.params?.slug;
+    if (!slug) {
+      throw new Error(`Slug shouldn't be null!`);
+    }
 
-  const blog = await getBySlug(slug);
+    const blog = await getBySlug(slug);
 
-  return { props: { blog } };
-};
+    return { props: { blog } };
+  };
 
 export const getStaticPaths: GetStaticPaths = async () => {
   return {

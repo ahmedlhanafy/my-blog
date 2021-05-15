@@ -1,3 +1,4 @@
+import { ComingSoon } from '../../components/ComingSoon';
 import Layout from '../../components/Layout';
 
 type Props = {};
@@ -7,7 +8,9 @@ const IndexPage = (_: Props) => {
     <Layout
       title="Welcome to my library!"
       addHeader={{ rootElement: <IndexPage /> }}
-    ></Layout>
+    >
+      <ComingSoon />
+    </Layout>
   );
 };
 

@@ -5,8 +5,6 @@ import { AppProps } from 'next/app';
 import React from 'react';
 import ReactGA from 'react-ga';
 
-console.log(process.env.NEXT_PUBLIC_GA_TRACKING_CODE);
-
 if (process.env.NODE_ENV === 'production')
   ReactGA.initialize(process.env.NEXT_PUBLIC_GA_TRACKING_CODE);
 

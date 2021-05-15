@@ -1,4 +1,5 @@
 import { components } from '../components/mdxComponents';
+import { baseUrl } from '../constants';
 import fs from 'fs';
 import matter from 'gray-matter';
 import renderToString from 'next-mdx-remote/render-to-string';
@@ -14,14 +15,16 @@ export type BlogPost = {
   content: MdxRemote.Source;
   type: 'book' | 'blog';
   slug: string;
-  excerpt: string;
   readTime: string;
+  description?: string;
   cover?: { src: string; alt: string };
+  seo: { url: string; image: string };
 };
 
 type MatterBlogPost = {
   data: {
     title: string;
+    description?: string;
     type: 'blog' | 'book';
     tags: string;
     createdAt: string;
@@ -40,8 +43,15 @@ const fromMatterToBlogPost = async (
 ): Promise<BlogPost> => {
   const {
     content,
-    data: { title, createdAt, tags, type, coverImg, coverAlt },
-    excerpt,
+    data: {
+      title,
+      createdAt,
+      tags,
+      type,
+      coverImg,
+      coverAlt,
+      description = null,
+    },
   } = matterBlog;
 
   const mdxContent = await renderToString(content, {
@@ -63,10 +73,14 @@ const fromMatterToBlogPost = async (
     createdAt,
     readableCreatedAt,
     slug,
-    excerpt,
+    description,
     tags: tags.split(','),
     readTime: stats.text,
     cover: coverImg && coverAlt ? { src: coverImg, alt: coverAlt } : null,
+    seo: {
+      image: `${baseUrl}/socialImages/${slug}.png`,
+      url: `${baseUrl}/blog/${slug}`,
+    },
   };
 };
 
@@ -87,7 +101,7 @@ export async function getAll(): Promise<BlogPost[]> {
   );
 
   const fileContentsWithMetadata = filesContents.map<MatterBlogPost>(
-    (content) => matter(content, { excerpt: true }) as any,
+    (content) => matter(content) as any,
   );
 
   for (let index = 0; index < fileContentsWithMetadata.length; index++) {

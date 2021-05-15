@@ -1,8 +1,7 @@
-import { css, styled } from '../stitches.config';
-import Highlight, { defaultProps } from 'prism-react-renderer';
-import theme from 'prism-react-renderer/themes/github';
 import { useTheme } from '../hooks/useTheme';
-import { PrismTheme } from 'prism-react-renderer';
+import { css, styled } from '../stitches.config';
+import Highlight, { defaultProps, PrismTheme } from 'prism-react-renderer';
+import theme from 'prism-react-renderer/themes/github';
 
 const darkTheme: PrismTheme = {
   plain: {
@@ -195,7 +194,7 @@ function Code({ children, className }) {
           className={className}
           style={{
             ...style,
-            overflow: 'scroll',
+            overflow: 'auto',
             marginTop: 20,
             marginBottom: 20,
             padding: 16,

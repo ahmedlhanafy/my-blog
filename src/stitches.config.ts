@@ -1,6 +1,7 @@
 import { createCss } from '@stitches/react';
 import color from 'color';
 
+export const backgroundColor = '#141414';
 const primaryColor = 'rgb(87, 164, 235)';
 
 export const { theme, styled, getCssString, global, css } = createCss({
@@ -41,30 +42,30 @@ export const { theme, styled, getCssString, global, css } = createCss({
       bottom: val,
     }),
     size: () => (val) => ({ width: val, height: val }),
-    marginX: (config) => (
-      value: keyof typeof config['theme']['colors'] | (string & {}),
-    ) => ({
-      marginLeft: value,
-      marginRight: value,
-    }),
-    paddingX: (config) => (
-      value: keyof typeof config['theme']['colors'] | (string & {}),
-    ) => ({
-      paddingLeft: value,
-      paddingRight: value,
-    }),
-    marginY: (config) => (
-      value: keyof typeof config['theme']['colors'] | (string & {}),
-    ) => ({
-      marginTop: value,
-      marginBottom: value,
-    }),
-    paddingY: (config) => (
-      value: keyof typeof config['theme']['colors'] | (string & {}),
-    ) => ({
-      paddingTop: value,
-      paddingBottom: value,
-    }),
+    marginX:
+      (config) =>
+      (value: keyof typeof config['theme']['colors'] | (string & {})) => ({
+        marginLeft: value,
+        marginRight: value,
+      }),
+    paddingX:
+      (config) =>
+      (value: keyof typeof config['theme']['colors'] | (string & {})) => ({
+        paddingLeft: value,
+        paddingRight: value,
+      }),
+    marginY:
+      (config) =>
+      (value: keyof typeof config['theme']['colors'] | (string & {})) => ({
+        marginTop: value,
+        marginBottom: value,
+      }),
+    paddingY:
+      (config) =>
+      (value: keyof typeof config['theme']['colors'] | (string & {})) => ({
+        paddingTop: value,
+        paddingBottom: value,
+      }),
   },
   media: {
     bp1: '(max-width: 640px)',
@@ -90,19 +91,4 @@ export const applyGlobalStyles = global({
     margin: 0,
     overflow: 'hidden',
   },
-  '@font-face': {
-    fontFamily: 'GT Walsheim Pro',
-    src: `url('../public/fonts/GTWalsheimPro/GTWalsheimProRegular.ttf')`,
-    fontWeight: 400,
-    fontStyle: 'normal',
-  },
 });
-
-global({
-  '@font-face': {
-    fontFamily: 'GT Walsheim Pro',
-    src: `url('fonts/GTWalsheimPro/GTWalsheimProBold.ttf')`,
-    fontWeight: 700,
-    fontStyle: 'normal',
-  },
-})();

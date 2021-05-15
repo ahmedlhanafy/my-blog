@@ -1,24 +1,21 @@
-import Layout from '../components/Layout';
 import { useTheme } from '../hooks/useTheme';
 import { styled } from '../stitches.config';
 import React from 'react';
 
-const ComingSoon = () => {
+export const ComingSoon = () => {
   const { isDark } = useTheme();
   const bracketsTheme = isDark ? undefined : 'light';
 
   return (
-    <Layout title="Coming Soon!" addHeader={{ rootElement: <ComingSoon /> }}>
-      <Container>
-        <Wrapper>
-          <Title>
-            <HeaderBracket theme={bracketsTheme}>{'<'}</HeaderBracket>
-            ComingSoon
-            <HeaderBracket theme={bracketsTheme}>{' />'}</HeaderBracket>
-          </Title>
-        </Wrapper>
-      </Container>
-    </Layout>
+    <Container>
+      <Wrapper>
+        <Title>
+          <HeaderBracket theme={bracketsTheme}>{'<'}</HeaderBracket>
+          ComingSoon
+          <HeaderBracket theme={bracketsTheme}>{' />'}</HeaderBracket>
+        </Title>
+      </Wrapper>
+    </Container>
   );
 };
 
@@ -28,6 +25,7 @@ const Container = styled('div', {
   justifyContent: 'center',
   alignItems: 'center',
   textAlign: 'start',
+  fontFamily: '$primary',
 });
 
 const Wrapper = styled('div', {
@@ -58,5 +56,3 @@ const HeaderBracket = styled('span', {
     },
   },
 });
-
-export default ComingSoon;

@@ -1,13 +1,14 @@
+import { ComingSoon } from '../../components/ComingSoon';
 import Layout from '../../components/Layout';
 
 type Props = {};
 
 const IndexPage = (_: Props) => {
-  // const { replace } = useRouter();
-
-  // replace('/coming-soon');
-
-  return <Layout title="My Projects!"></Layout>;
+  return (
+    <Layout title="My Projects" addHeader={{ rootElement: <IndexPage /> }}>
+      <ComingSoon />
+    </Layout>
+  );
 };
 
 export default IndexPage;

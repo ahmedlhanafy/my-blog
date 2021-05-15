@@ -1,10 +1,11 @@
 import { useTheme } from '../hooks/useTheme';
 import { styled } from '../stitches.config';
 
-export const IconsBackground = () => {
+export const IconsBackground = ({ className }: { className?: string }) => {
   const { isDark } = useTheme();
   return (
     <Image
+      className={className}
       aria-hidden="true"
       alt="background icons"
       src={require('./icons.png')}

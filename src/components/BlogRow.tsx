@@ -23,14 +23,7 @@ export const BlogRow = (props: Props) => {
       <Metadata>
         {blog.readableCreatedAt} • {blog.readTime}
       </Metadata>
-      {/* <TagsContainer style={{ marginBottom: blog.excerpt ? 10 : 0 }}>
-        {blog.tags.map((tag) => (
-          <TagButton theme={isDark ? undefined : 'light'} key={tag}>
-            {tag}
-          </TagButton>
-        ))}
-      </TagsContainer> */}
-      <Excerpt>{blog.excerpt.trim()}</Excerpt>
+      <Description>{blog.description?.trim()}</Description>
     </Container>
   );
 };
@@ -87,7 +80,7 @@ const Metadata = styled('span', {
 //   },
 // });
 
-const Excerpt = styled('p', {
+const Description = styled('p', {
   fontSize: 12,
   color: '$textColor',
   margin: 0,

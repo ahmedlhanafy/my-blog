@@ -1,11 +1,11 @@
+import { baseUrl } from './constants';
 import { getAll } from './repos/blogs';
 import { Author, Feed } from 'feed';
 import fs from 'fs';
 
-const baseUrl = 'https://www.ahmedelhanafy.com';
 const date = new Date();
 
-const generateRSS = async () => {
+export const generateRSS = async () => {
   const author: Author = {
     name: 'Ahmed Elhanafy',
     link: 'https://twitter.com/ahmedlhanafy',
@@ -22,9 +22,7 @@ const generateRSS = async () => {
     updated: date,
     generator: 'Next.js using Feed for Node.js',
     feedLinks: {
-      rss2: `${baseUrl}/rss/feed.xml`,
-      json: `${baseUrl}/rss/feed.json`,
-      atom: `${baseUrl}/rss/atom.xml`,
+      rss2: `${baseUrl}/feed.xml`,
     },
     author,
   });
@@ -32,19 +30,16 @@ const generateRSS = async () => {
   const blogs = (await getAll()).filter((blog) => blog.type === 'blog');
 
   blogs.forEach((blog) => {
-    const url = `${baseUrl}/blog/${blog.slug}`;
-
     feed.addItem({
       title: blog.title,
-      id: url,
-      link: url,
-      description: blog.excerpt,
+      id: blog.seo.url,
+      link: blog.seo.url,
+      description: blog.description,
       content: blog.content.renderedOutput,
       author: [author],
       contributor: [author],
       date: new Date(blog.createdAt),
-      // TODO: Add social images
-      image: `${baseUrl}/image.png`,
+      image: blog.seo.image,
     });
   });
 
@@ -55,5 +50,3 @@ const generateRSS = async () => {
     console.error(e);
   }
 };
-
-generateRSS();
