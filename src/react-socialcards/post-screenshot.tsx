@@ -1,6 +1,6 @@
-import { IconsBackground } from '../components/IconsBackground';
 import { BlogPost } from '../repos/blogs';
 import { lightTheme, styled } from '../stitches.config';
+import { iconsImgData } from './iconsImgData';
 import Link from 'next/link';
 
 type Props = { blog: BlogPost };
@@ -11,7 +11,7 @@ export const BlogScreenshot = (props: Props) => {
   return (
     <Container className={lightTheme.toString()} id="root">
       <Background />
-      <StyledIconsBackground />
+      <IconsBackground src={iconsImgData} />
       {blog.cover && (
         <ImageContainer>
           <StyledImage src={blog.cover.src} alt={blog.cover.alt} />
@@ -33,8 +33,11 @@ export const BlogScreenshot = (props: Props) => {
   );
 };
 
-const StyledIconsBackground = styled(IconsBackground, {
+const IconsBackground = styled('img', {
+  absoluteFill: 0,
+  zIndex: -1,
   transform: 'rotate(-35deg) translateY(-600px)',
+  opacity: 0.1,
 });
 
 export const Button = styled('a', {
