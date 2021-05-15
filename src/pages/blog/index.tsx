@@ -22,7 +22,7 @@ const IndexPage = (props: Props) => {
       }}
     >
       <BlogsContainer>
-        {[...blogs, ...blogs].map((blog) => (
+        {blogs.map((blog) => (
           <React.Fragment key={blog.slug}>
             <BlogRow key={blog.slug} blog={blog} />
             <Separator theme={isDark ? undefined : 'light'} />
