@@ -5,6 +5,7 @@ import { Header } from './Header';
 import { IconsBackground } from './IconsBackground';
 import Head from 'next/head';
 import React, { ReactNode } from 'react';
+import ReactGA from 'react-ga';
 
 type Props = {
   children?: ReactNode;
@@ -26,6 +27,11 @@ const Layout = React.forwardRef(
     const { isDark } = useTheme();
     const containerRef = React.useRef<HTMLDivElement>();
     const actualRef = ref ?? containerRef;
+
+    React.useEffect(() => {
+      if (process.env.NODE_ENV === 'production')
+        ReactGA.pageview(window.location.pathname);
+    }, []);
 
     return (
       <Container
